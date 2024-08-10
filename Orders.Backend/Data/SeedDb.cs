@@ -30,6 +30,28 @@ namespace Orders.Backend.Data
             await _context.SaveChangesAsync();
         }
 
+        private async Task CheckStateAsync()
+        {
+            if (!_context.States.Any())
+            { 
+                _context.States.Add(new State { Name = "Nuevo León", CountryId = 1 });
+                _context.States.Add(new State { Name = "Coahuila", CountryId = 1 });
+                _context.States.Add(new State { Name = "Durango", CountryId = 1 });
+            }
+            await _context.SaveChangesAsync();
+        }
+
+        private async Task CheckCityAsync()
+        {
+            if (!_context.Cities.Any())
+            {
+                _context.Cities.Add(new City { Name = "China", StateId = 1 });
+                _context.Cities.Add(new City { Name = "Apodaca", StateId = 1 });
+                _context.Cities.Add(new City { Name = "Cadereyta", StateId = 1 });
+            }
+            await _context.SaveChangesAsync();
+        }
+
         private async Task CheckCategoriesAsync()
         {
             if (!_context.Categories.Any())
